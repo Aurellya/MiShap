@@ -56,7 +56,7 @@ This lets CI pipelines such as GitHub Actions fail a build when a design has a m
 
 ```yaml
 - name: Check workflow design
-run: java -jar mishap-cli/target/mishap.jar check path/to/spec.mishap
+  run: java -jar mishap-cli/target/mishap.jar check path/to/spec.mishap
 ```
 
 ## Example
@@ -105,7 +105,7 @@ mvn package -DskipTests
 cd ../..
 ```
 
-    Then start the three services, **one terminal each** (Java 21), from the repo root. Start Order last:
+Then start the three services, **one terminal each** (Java 21), from the repo root. Start Order last:
 
 ```bash
 cd generated-out/v3/payment-service   && mvn spring-boot:run
@@ -175,7 +175,7 @@ Start the services from the matching generated folder (`generated-out/v1` or `ge
 
 ## Todos
 
-- More concise docs
+- More concise docs (will tidy it up soon)
 - Diagrams (state machine and sequence diagrams) generated from specs and traces
 - Derive failure tests automatically from the explorer's counterexample traces
 - Cover the `v2` race with a controlled delivery order (hold queue)
