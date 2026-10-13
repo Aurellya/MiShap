@@ -1,6 +1,6 @@
 # Why I built MiShap
 
-<img src="./docs/MiShap.png" width="150" alt="MiShap Icon">
+<img src="./MiShap.png" width="150" alt="MiShap Icon">
 
 ## The question that started it
 

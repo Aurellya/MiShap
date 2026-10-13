@@ -1,6 +1,6 @@
 # MiShap Design Note
 
-<img src="./docs/MiShap.png" width="150" alt="MiShap Icon">
+<img src="./MiShap.png" width="150" alt="MiShap Icon">
 
 ## Goal
 
