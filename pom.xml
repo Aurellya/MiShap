@@ -1,0 +1,19 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.github.aurellya</groupId>
+  <artifactId>mishap</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  <modules>
+    <module>mishap-dsl</module>
+    <module>mishap-model</module>
+    <module>mishap-explorer</module>
+    <module>mishap-generator</module>
+    <module>mishap-demo</module>
+    <module>mishap-cli</module>
+  </modules>
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+</project>

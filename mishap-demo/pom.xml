@@ -1,0 +1,9 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>io.github.aurellya</groupId>
+    <artifactId>mishap</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
+  </parent>
+  <artifactId>mishap-demo</artifactId>
+</project>

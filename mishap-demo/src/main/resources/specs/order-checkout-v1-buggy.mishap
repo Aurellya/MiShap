@@ -1,0 +1,47 @@
+system OrderCheckout {
+
+    init: send Order.Start
+
+    service Order {
+        state: NEW, AWAITING_PAYMENT, PAID, SHIPPED, CANCELLED
+        initial: NEW
+
+        on Start in NEW                  -> goto AWAITING_PAYMENT, send Payment.Charge
+        on PaymentOk in AWAITING_PAYMENT -> goto PAID, send Inventory.Reserve
+        on Reserved in PAID              -> goto SHIPPED
+        on timeout in AWAITING_PAYMENT   -> goto CANCELLED
+    }
+
+    service Payment {
+        state: IDLE, CHARGED, REFUNDED
+        initial: IDLE
+        var charges = 0
+
+        on Charge in IDLE    -> goto CHARGED, charges = charges + 1, send Order.PaymentOk
+        on Charge in CHARGED -> charges = charges + 1, send Order.PaymentOk // BUG: not idempotent
+        on Refund in CHARGED -> goto REFUNDED
+    }
+
+    service Inventory {
+        state: FREE, RESERVED
+        initial: FREE
+
+        on Reserve in FREE -> goto RESERVED, send Order.Reserved
+    }
+
+    failures: lose, duplicate
+    lossy: Payment.Charge, Order.PaymentOk
+
+    bounds {
+        maxDepth: 15
+        maxInFlight: 3
+        maxLost: 1
+        maxDuplicated: 1
+    }
+
+    invariant NoShipWithoutPayment: not (Order.state == SHIPPED and Payment.charges == 0)
+    invariant NoDoubleCharge: Payment.charges <= 1
+
+    final NoPaidCancelledWithoutRefund:
+        not (Order.state == CANCELLED and Payment.charges >= 1 and Payment.state != REFUNDED)
+}

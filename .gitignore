@@ -1,0 +1,6 @@
+target/
+generated-out/
+mishap.env.bat
+.idea/
+*.iml
+dependency-reduced-pom.xml
